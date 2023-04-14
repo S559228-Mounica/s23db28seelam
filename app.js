@@ -49,7 +49,6 @@ app.use('/resource', resourceRouter);
 async function recreateDB() {
   await shirt.deleteMany();
   let instance1 = new shirt({ brand:"Puma",cost:18,color:"pink" });
-
   instance1.save().then(() => {
     console.log('Everything went well');
   }).catch((e) => {
