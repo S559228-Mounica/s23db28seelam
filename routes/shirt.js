@@ -9,5 +9,9 @@ router.get('/', shirt_controlers.shirt_view_all_Page );
 router.get('/detail', shirt_controlers.shirt_view_one_Page);
 
 /* GET create shirt page */
-router.get('/create', shirt_controlers.shirt_create_Page)
+router.get('/create', shirt_controlers.shirt_create_Page);
+
+/* GET create update page */
+router.get('/update', shirt_controlers.shirt_update_Page);
+
 module.exports = router;

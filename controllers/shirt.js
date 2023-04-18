@@ -115,3 +115,31 @@ exports.shirt_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+
+   // Handle building the view for creating a shirt.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.shirt_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('shirtcreate', { title: 'shirt Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+
+   // Handle building the view for updating a shirt.
+// query provides the id
+exports.shirt_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await shirt.findById(req.query.id)
+    res.render('shirtupdate', { title: 'shirt Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
