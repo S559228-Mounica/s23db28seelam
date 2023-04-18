@@ -14,4 +14,7 @@ router.get('/create', shirt_controlers.shirt_create_Page);
 /* GET create update page */
 router.get('/update', shirt_controlers.shirt_update_Page);
 
+/* GET delete shirt page */
+router.get('/delete', shirt_controlers.shirt_delete_Page);
+
 module.exports = router;
