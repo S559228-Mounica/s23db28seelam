@@ -1,40 +1,42 @@
 extends layout
 block content
  h1= title
- - let shirtid = toShow._id
- - let brand = toShow.brand
- - let cost = toShow.cost
- - let color = toShow.color
- 
- div.row(class='mb-2')
-  div.mr-1 ID is
-  div #{shirtid}
- - let actionid = "/resource/shirt/" + shirtid
- form(id='shirtForm', action= actionid, method="PUT")
-  div.form-group
-    label.shirtAttr(for='brand') shirt type
-    input#brand(type='String', name='brand', value= brand )
-  div.form-group
-    label.shirtAttr(for='cost') shirt cost
-    input#cost(type='number', name='cost', value= cost )
-  div.form-group
-    label.shirtAttr(for='color') shirt color
-    input#color(type='String', name='color', value= color )
-  input(type="submit")
- script.
-  document.forms['shirtForm'].addEventListener('submit', (event) => {
-   event.preventDefault();
-   // TODO do something here to show user that form is being submitted
-   fetch(event.target.action, {
-    method: 'PUT',
-    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-   }).then((resp) => {
-    return resp.json(); // or resp.text() or whatever the server sends
-   }).then((body) => {
-    alert("Update succeded")
-    // TODO handle body
-   }).catch((error) => {
-    // TODO handle error
-    alert("Update failed " + error )
+ if (toShow == null)
+  h2 No instance to update
+ else
+  - let shirtid = toShow._id
+  - let brand = toShow.brand
+  - let cost = toShow.cost
+  - let color = toShow.color
+  div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{shirtid}
+  - let actionid = "/resource/shirt/" + shirtid
+  form(id='shirtForm', action= actionid, method="PUT")
+   div.form-group
+     label.shirtAttr(for='brand') shirt type
+     input#brand(type='String', name='brand', value= brand )
+   div.form-group
+     label.shirtAttr(for='cost') shirt cost
+     input#cost(type='number', name='cost', value= cost )
+   div.form-group
+     label.shirtAttr(for='color') shirt color
+     input#color(type='String', name='color', value= color )
+   input(type="submit")
+  script.
+   document.forms['shirtForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+     method: 'PUT',
+     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+     return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+     alert("Update succeded")
+     // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
    });
-  });

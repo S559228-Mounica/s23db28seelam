@@ -1,20 +1,23 @@
 extends layout
 block content
  h1= title
- - let shirtid = toShow._id
- - let brand = toShow.brand
- - let cost = toShow.cost
- - let color = toShow.color
- div
+ if (toShow == null)
+  h2 No instance to detail
+ else
+  - let shirtid = toShow._id
+  - let brand = toShow.brand
+  - let cost = toShow.cost
+  - let color = toShow.color
+  div
     div.row
-        div(class='shirtAttr mr-3') shirt ID is:
-        div #{shirtid}
+     div(class='shirtAttr mr-3') shirt ID is:
+     div #{shirtid}
     div.row
-        div(class='shirtAttr mr-3') shirt Type is:
-        div #{brand}
+     div(class='shirtAttr mr-3') shirt Type is:
+     div #{brand}
     div.row
-        div(class='shirtAttr mr-3') shirt Size is:
-        div #{cost}
+     div(class='shirtAttr mr-3') shirt Size is:
+     div #{cost}
     div.row
-        div(class='shirtAttr mr-3') shirt Cost is:
-        div #{color}
+     div(class='shirtAttr mr-3') shirt Cost is:
+     div #{color}
