@@ -2,17 +2,19 @@ extends layout
 
 block content
   h1= title
-  -let results=[{brand:"Puma",cost:18,color:"pink"},{brand:"Lewis",cost:33,color:"blue"},{brand:"CK",cost:88,color:"black"}]
-    
-    div(class="container-fluid")
-    div(class="row")
-        each item,index in results
-            div(class="col-sm-2" onclick=`buy(${index})`)
-                p brand:  #{item.brand} 
-                p cost: #{item.cost}
-                p color: #{item.color}
-    script.
-      function buy(index)
-      {
-        alert(`You purchased item ${index+1}.`)
-      }
+  - let items = results
+  div(claass="container-fluid mt-3")
+   div(class="row m-1")
+    each item,index in items
+     - let destination = `dispatch(\"/shirt/update?id=${item._id}\")`
+     div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{item.brand} - #{item.cost } - #{item.color}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+   function buy(itemNo)
+   {
+     alert(`You purchased Item ${itemNo+1}`)
+   }
+   function dispatch(path)
+   {
+     window.location.href=path
+   }
