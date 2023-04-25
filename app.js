@@ -89,7 +89,7 @@ async function recreateDB() {
   });
 }
 
-let reseed = true;
+let reseed = false;
 if (reseed) { recreateDB();}
 // passport config
 // Use the existing connection
