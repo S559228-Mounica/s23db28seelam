@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const shirtchema = mongoose.Schema({
 brand: String,
-cost: Number,
+cost: {type:Number, min:5,max:1000},
 color: String
 })
 module.exports = mongoose.model("shirt",shirtchema)
